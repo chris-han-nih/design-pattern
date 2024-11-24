@@ -1,17 +1,17 @@
 package nsus.payment
 
-import nsus.payment.facade.withoutInterface.DvdPlayer
-import nsus.payment.facade.withoutInterface.HomeTheaterFacade
-import nsus.payment.facade.withoutInterface.SoundSystem
-import nsus.payment.facade.withoutInterface.TV
+import nsus.payment.facade.withInterface.*
+import nsus.payment.strategy.CreditCartPayment
+import nsus.payment.strategy.ShoppingCart
 
 fun main() {
     val homeTheaterFacade = HomeTheaterFacade(
-        DvdPlayer(),
-        SoundSystem(),
-        TV()
+        LGTV(),
+        BoseSoundSystem()
     )
-
     homeTheaterFacade.watchMovie("Inception")
     homeTheaterFacade.endMovie()
+    
+    val shoppingCart = ShoppingCart(CreditCartPayment("Dave", "1234-5678-9012-3456"))
+    shoppingCart.pay(100)
 }
